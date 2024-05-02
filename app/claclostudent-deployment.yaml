@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: claclostdeploy #[DEPLOYMENT_NAME]
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: claclostudent #[APP_NAME]
+  template:
+    metadata:
+      labels:
+        app: claclostudent #[APP_NAME]
+    spec:
+      containers: 
+        - name: claclostudent-19276544-container #[CONTAINER_NAME]
+          image: gcr.io/comp7033-cwk2/claclostudent-19276544-comp7033
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: "512Mi"
+            requests:
+              cpu: "0.1"
+              memory: "256Mi"
+          env:
+            - name: "19276544" #MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-atlas-credentials
+                  key: username
+            - name: "onenine276544" #MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-atlas-credentials
+                  key: password
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: claclostudent-service
+spec:
+  selector:
+    app: claclostudent #[APP_NAME]
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: LoadBalancer
