@@ -7,7 +7,7 @@ from routes.student_grading_feedback_manager import student_grading_feedback_man
 from routes.learning_material_manager import teach_material, learning_material_manager
 from routes.student_profile_manager import student_profile_manager
 from routes.assessment_upload_submit_manager import assessment_upload_submit_manager
-from prometheus_fastapi_instrumentator import Instrumentator
+# from prometheus_fastapi_instrumentator import Instrumentator
 from config.database import MONGODB_USERNAME, MONGODB_PASSWORD
 
 
