@@ -25,12 +25,12 @@ spec:
               cpu: "0.1"
               memory: "256Mi"
           env:
-            - name: MONGODB_USERNAME
+            - name: 19276544@brookes.ac.uk
               valueFrom:
                 secretKeyRef:
                   name: mongodb-atlas-credentials
                   key: username
-            - name: MONGODB_PASSWORD
+            - name: onenine276544
               valueFrom:
                 secretKeyRef:
                   name: mongodb-atlas-credentials
